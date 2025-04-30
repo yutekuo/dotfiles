@@ -12,6 +12,8 @@ alias gpoh="git push origin HEAD"
 alias grau="git remote add upstream"
 alias gfrum="git fetch upstream && git rebase upstream/main"
 alias gpum="git pull upstream main"
+alias gfrom="git fetch origin && git rebase origin/main"
+alias gpom="git pull origin main"
 alias gfocb="git fetch origin && git checkout -b $1 origin/$1"
 
 # delete local branch
