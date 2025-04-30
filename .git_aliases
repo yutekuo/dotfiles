@@ -1,6 +1,7 @@
 alias gs="git status"
 alias gd="git diff"
-alias gbvv="git branch -vv"
+alias gb="git branch -vv"
+alias gco="git checkout"
 alias gcb="git checkout -b"
 alias gl="git log"
 alias gldog="git log --decorate --oneline --graph"
@@ -13,68 +14,11 @@ alias gfrum="git fetch upstream && git rebase upstream/main"
 alias gpum="git pull upstream main"
 alias gfocb="git fetch origin && git checkout -b $1 origin/$1"
 
-# Function to safely delete local branches
-function gbdl() {
-  if [ -z "$1" ]; then
-    echo "Please provide a branch name to delete."
-    return 1
-  fi
+# delete local branch
+alias gbdl="git branch -D"
 
-  git branch -d "$1" || {
-    echo "The branch is not fully merged. Do you want to force delete it? (y/N)"
-    read -r answer
-    if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
-      git branch -D "$1"
-    else
-      echo "Deletion cancelled."
-    fi
-  }
-}
-alias gbdl=gbdl
+# delete remote branch
+alias gbdr="git push origin --delete"
 
-# Function to safely delete remote branches
-function gbdr() {
-  if [ -z "$1" ]; then
-    echo "Please provide a branch name to delete."
-    return 1
-  fi
-
-  echo "You are about to delete the remote branch: $1"
-  read -p "Are you sure? (y/N): " confirm
-  if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
-    git push origin --delete "$1"
-  else
-    echo "Remote branch deletion cancelled."
-  fi
-}
-alias gbdr=gbdr
-
-function gbda() {
-  if [ -z "$1" ]; then
-    echo "Please provide a branch name to delete."
-    return 1
-  fi
-
-  local branch="$1"
-
-  # Step 1: Delete local branch (with safety check)
-  git branch -d "$branch" || {
-    echo "Local branch '$branch' is not fully merged. Force delete? (y/N)"
-    read -r confirm_local
-    if [[ "$confirm_local" == "y" || "$confirm_local" == "Y" ]]; then
-      git branch -D "$branch"
-    else
-      echo "Local branch deletion cancelled."
-    fi
-  }
-
-  # Step 2: Delete remote branch (with confirmation)
-  echo "You are about to delete the remote branch '$branch' from origin."
-  read -p "Are you sure? (y/N): " confirm_remote
-  if [[ "$confirm_remote" == "y" || "$confirm_remote" == "Y" ]]; then
-    git push origin --delete "$branch"
-  else
-    echo "Remote branch deletion cancelled."
-  fi
-}
-alias gbda=gbda
+# delete local and remote branches
+alias gbda="git branch -D $1 && git push origin --delete $1"
