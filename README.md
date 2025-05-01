@@ -1,17 +1,17 @@
 # dotfiles
 
-This repository automates the setup of essential development tools and configuration on macOS, including:
+This repository provides setup guides and configuration files for essential development tools on macOS
+, including:
 
 - Homebrew
 - Oh My Zsh
 - Powerlevel10k theme
 - NVM (Node Version Manager)
 - Git aliases
-- Custom `.zshrc`, `.gitconfig`, and more
 
 ## 📦 Installation Checklist
 
-- [ ] Install[Homebrew](https://brew.sh/)
+- [ ] Install [Homebrew](https://brew.sh/)
 - [ ] Install [Oh My Zsh](https://ohmyz.sh/)
 - [ ] Install [Powerlevel10k Theme](https://github.com/romkatv/powerlevel10k)
 - [ ] Install [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm)
