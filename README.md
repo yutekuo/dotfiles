@@ -40,3 +40,8 @@ This repository provides setup guides and configuration files for essential deve
   source $HOME/.dotfiles/.git_aliases
   source $HOME/.dotfiles/.zshrc_aliases
   ```
+- [ ] Install all brew-installed packages:
+  ```
+  cd ~/.dotfiles
+  brew bundle
+  ```
